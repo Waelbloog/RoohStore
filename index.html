@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>روح للبخور والعطور - متجر إلكتروني فاخر</title>
+    
+    <!-- Tailwind CSS for high-quality utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Cairo for modern professional Arabic typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome for luxury brand icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js for the stunning 3D Bottle and Smoke Simulation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            beige: '#F4F0EA',     // Base warm beige from image
+                            darkBeige: '#E5DEC9', 
+                            gold: '#D4AF37',      // Luxury gold
+                            goldDark: '#C5A880',
+                            crimson: '#9D1C4C',   // Red bridal package color
+                            charcoal: '#1A1816',  // Elegant dark text
+                            accentPink: '#E297B2' // Bridal accent
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #FAF8F5;
+            color: #1A1816;
+            scroll-behavior: smooth;
+        }
+
+        /* Luxury scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4F0EA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A880;
+            border-radius: 4px;
+        }
+
+        /* Glassmorphism custom components */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(229, 222, 201, 0.4);
+        }
+
+        /* Smooth shine effect for luxury buttons */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(30deg);
+            transition: none;
+        }
+        .btn-shine:hover::after {
+            left: 130%;
+            transition: all 0.8s ease-in-out;
+        }
+
+        /* Floating elements animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Tab highlights and quick-active states */
+        .active-product-tab {
+            border-color: #D4AF37;
+            color: #D4AF37;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Custom toast notifications container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full"></div>
+
+    <!-- Top banner with announcement -->
+    <div class="bg-brand-charcoal text-white text-xs py-2 text-center font-medium tracking-wide">
+        🌟 شحن لجميع مناطق اليمن والخليج - تواصل معنا عبر الواتساب لتأكيد طلبك مباشرة!
+    </div>
+
+    <!-- Main Header -->
+    <header class="sticky top-0 z-40 glass-panel shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo area using the supplied logo file IMG_0331.jpg -->
+            <a href="#" class="flex items-center gap-3">
+                <img src="IMG_0331.jpg" alt="شعار روح" class="h-14 w-14 object-cover rounded-full border border-brand-gold/30 shadow-md transition-transform duration-300 hover:scale-105" onerror="this.src='https://placehold.co/100x100/F4F0EA/D4AF37?text=ROOH'">
+                <div class="flex flex-col">
+                    <span class="font-extrabold text-xl tracking-wide text-brand-charcoal leading-none">رُوح</span>
+                    <span class="text-[10px] text-brand-gold tracking-widest mt-1 font-semibold uppercase">للبخور والعطور</span>
+                </div>
+            </a>
+
+            <!-- Navigation links -->
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-sm text-brand-charcoal">
+                <a href="#about" class="hover:text-brand-gold transition-colors duration-200">قصتنا</a>
+                <a href="#products" class="hover:text-brand-gold transition-colors duration-200">المنتجات المفردة</a>
+                <a href="#packages" class="hover:text-brand-gold transition-colors duration-200">البكجات الفاخرة</a>
+                <a href="#studio-3d" class="hover:text-brand-gold text-brand-gold transition-all duration-200 flex items-center gap-1">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
+                    الاستوديو التفاعلي
+                </a>
+                <a href="#ai-suite" class="text-brand-goldDark hover:text-brand-gold transition-colors duration-200 flex items-center gap-1.5 font-bold">
+                    <i class="fas fa-magic"></i>
+                    مستشار روح الذكي (AI)
+                </a>
+                <a href="#reviews" class="hover:text-brand-gold transition-colors duration-200">آراء عملائنا</a>
+            </nav>
+
+            <!-- Quick Action controls (Cart, Socials, Contact) -->
+            <div class="flex items-center gap-4">
+                <!-- Social media handle link (roohalbakhour) -->
+                <a href="https://instagram.com/roohalbakhour" target="_blank" class="text-brand-charcoal hover:text-brand-gold transition-all duration-300 text-lg hidden sm:inline-block" title="تابعنا على انستغرام">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                
+                <!-- Shopping Cart Trigger Button -->
+                <button onclick="toggleCart()" class="relative p-2.5 rounded-full bg-brand-beige hover:bg-brand-darkBeige text-brand-charcoal transition-all duration-300 flex items-center justify-center" aria-label="سلة التسوق">
+                    <i class="fas fa-shopping-bag text-lg"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-crimson text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+
+                <!-- Dynamic Contact WhatsApp Quick Action -->
+                <a href="https://wa.me/967783255542" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-full text-xs font-bold flex items-center gap-2 shadow-md transition-all duration-300 btn-shine">
+                    <i class="fab fa-whatsapp text-lg"></i>
+                    <span class="hidden md:inline">استشارة سريعة</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- High luxury dynamic Hero section -->
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-beige to-white py-12">
+        <!-- Floating abstract backgrounds -->
+        <div class="absolute top-10 right-10 w-72 h-72 bg-brand-darkBeige rounded-full filter blur-3xl opacity-30 floating-element" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-10 left-10 w-96 h-96 bg-brand-accentPink/20 rounded-full filter blur-3xl opacity-30 floating-element" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            
+            <!-- Hero text Content -->
+            <div class="lg:col-span-7 flex flex-col justify-center text-center lg:text-right" data-aos="fade-up">
+                <span class="inline-flex items-center gap-2 self-center lg:self-start px-4 py-1.5 rounded-full bg-brand-darkBeige/50 text-brand-charcoal text-xs font-bold mb-6 tracking-wider">
+                    <i class="fas fa-sparkles text-brand-gold"></i>
+                    حيث تلامس العطور وجدان الروح
+                </span>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-charcoal leading-tight mb-6">
+                    بخور وعطور <br class="hidden sm:inline">
+                    تعبق بـ <span class="text-brand-gold relative">الأصالة اليمنيّة<span class="absolute bottom-1 left-0 w-full h-1.5 bg-brand-gold/30 rounded"></span></span>
+                </h1>
+                
+                <p class="text-base sm:text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    "مع كل نفحة، يلامس بخورنا روح المكان ويجعل اللحظات أكثر عمقاً وأصالة. إنه ليس مجرد اختيار، بل هو أسلوب حياة يعكس ذوقك الرفيع وارتباطك."
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#packages" class="px-8 py-4 rounded-xl bg-brand-charcoal text-white font-bold text-center hover:bg-brand-gold transition-all duration-300 shadow-xl hover:shadow-brand-gold/20 btn-shine">
+                        اكتشف البكجات الفاخرة
+                    </a>
+                    <a href="#studio-3d" class="px-8 py-4 rounded-xl border-2 border-brand-gold text-brand-charcoal font-bold text-center hover:bg-brand-gold hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fas fa-cube text-brand-gold"></i>
+                        الاستوديو التفاعلي 3D
+                    </a>
+                </div>
+
+                <!-- Features list -->
+                <div class="grid grid-cols-3 gap-4 mt-12 border-t border-brand-darkBeige/60 pt-8 max-w-lg mx-auto lg:mx-0">
+                    <div class="text-center lg:text-right">
+                        <span class="block font-extrabold text-2xl text-brand-gold">100%</span>
+                        <span class="text-xs text-gray-500">مكونات طبيعية فاخرة</span>
+                    </div>
+                    <div class="text-center lg:text-right border-x border-brand-darkBeige">
+                        <span class="block font-extrabold text-2xl text-brand-gold">ثبات</span>
+                        <span class="text-xs text-gray-500">يدوم لأيام متواصلة</span>
+                    </div>
+                    <div class="text-center lg:text-right">
+                        <span class="block font-extrabold text-2xl text-brand-gold">سهل</span>
+                        <span class="text-xs text-gray-500">طلب سريع بضغطة زر</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Feature Image using IMG_0400.jpg (Beige gift bags with elegant incense burner) -->
+            <div class="lg:col-span-5 relative flex justify-center items-center">
+                <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden shadow-2xl border-4 border-white transform hover:scale-[1.02] transition-transform duration-500">
+                    <!-- High-quality image representation -->
+                    <img src="IMG_0331.jpg" alt="بكج روح الراقي للبخور والعطور" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/500x500/F4F0EA/1A1816?text=Rooh+Perfumes'">
+                    
+                    <!-- Golden overlay badge -->
+                    <div class="absolute bottom-4 left-4 right-4 glass-panel p-4 rounded-2xl flex items-center justify-between shadow-lg">
+                        <div>
+                            <p class="text-[10px] text-brand-gold uppercase font-bold tracking-widest">الأكثر طلباً هذا الأسبوع</p>
+                            <h4 class="font-extrabold text-sm text-brand-charcoal">باكج روح البيج وعطر العرائس الفاخر</h4>
+                        </div>
+                        <span class="bg-brand-gold text-white px-3 py-1.5 rounded-lg text-xs font-bold">بخور وعطور</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3D Studio & Live Incense Smoke Simulation -->
+    <section id="studio-3d" class="py-20 bg-brand-charcoal text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-800 to-brand-charcoal opacity-75"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs text-brand-gold uppercase tracking-widest font-black block mb-3">صالة عرض تفاعلية ثلاثية الأبعاد</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-4 font-serif">استوديو روح الافتراضي</h2>
+                <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                    قم بتدوير زجاجة عطر "روح" الأيقونية بزاوية 360 درجة، وقم بتجربة تغيير عطر روح الذهبي أو عطر عرائسي الوردي، واستمتع بتصاعد دخان البخور اليمني العريق بشكل واقعي ومذهل!
+                </p>
+            </div>
+
+            <!-- Interactive 3D Canvas and controls -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                
+                <!-- 3D Viewport Panel -->
+                <div class="lg:col-span-8 bg-neutral-900/60 rounded-3xl p-6 border border-neutral-800 flex flex-col relative h-[500px] lg:h-[600px]">
+                    <!-- Viewport Actions -->
+                    <div class="absolute top-8 left-8 z-20 flex gap-2">
+                        <button onclick="reset3DCamera()" class="p-2.5 rounded-xl bg-neutral-800/80 hover:bg-neutral-700 text-white transition text-xs flex items-center gap-1.5" title="إعادة ضبط العرض">
+                            <i class="fas fa-undo"></i>
+                            <span>إعادة تعيين</span>
+                        </button>
+                    </div>
+
+                    <!-- Ambient Active Badge -->
+                    <div class="absolute top-8 right-8 z-20 glass-panel border-none bg-black/40 text-xs text-white px-4 py-2 rounded-full flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 bg-red-500 rounded-full animate-ping"></span>
+                        <span id="active-3d-name">عطر روح الفاخر</span>
+                    </div>
+
+                    <!-- THREE JS CANVAS CONTAINER -->
+                    <div id="threejs-container" class="w-full flex-grow rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing relative">
+                        <!-- Smoke incense burner visual fallback/anchor in 3D -->
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
+                            <span class="text-[10px] text-gray-500 tracking-wider">موقد بخور افتراضي مستمر</span>
+                        </div>
+                    </div>
+
+                    <!-- Instructions -->
+                    <div class="mt-4 text-center text-xs text-gray-400 flex items-center justify-center gap-2">
+                        <i class="fas fa-mouse-pointer text-brand-gold animate-bounce"></i>
+                        <span>انقر واسحب بالفأرة أو المس بأصبعك لتدوير زجاجة العطر وتأمل التفاصيل</span>
+                    </div>
+                </div>
+
+                <!-- Customizer sidebar options -->
+                <div class="lg:col-span-4 flex flex-col justify-between bg-neutral-950/60 rounded-3xl p-8 border border-neutral-800">
+                    <div>
+                        <h3 class="text-xl font-bold mb-6 text-brand-gold pb-4 border-b border-neutral-800">تخصيص العرض التفاعلي</h3>
+                        
+                        <!-- 1. Select Perfume Customization -->
+                        <div class="mb-8">
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-3 font-semibold">اختيار الزجاجة والسائل</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button onclick="select3DPerfume('rooh')" id="btn-opt-rooh" class="p-4 rounded-xl border-2 border-brand-gold bg-brand-gold/10 text-white flex flex-col items-center gap-2 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-full bg-amber-500 border-2 border-white shadow-md"></div>
+                                    <span class="text-xs font-bold">عطر روح</span>
+                                </button>
+                                <button onclick="select3DPerfume('arais')" id="btn-opt-arais" class="p-4 rounded-xl border-2 border-transparent bg-neutral-900 hover:bg-neutral-800 text-gray-400 flex flex-col items-center gap-2 transition-all duration-300">
+                                    <div class="w-6 h-6 rounded-full bg-brand-crimson border-2 border-white shadow-md"></div>
+                                    <span class="text-xs font-bold">عطر عرائسي</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 2. Smoke Density Control -->
+                        <div class="mb-8">
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-3 font-semibold">كثافة بخور روح المتصاعد</label>
+                            <input id="smoke-slider" type="range" min="10" max="150" value="80" class="w-full accent-brand-gold bg-neutral-800 rounded-lg h-2" oninput="updateSmokeDensity(this.value)">
+                            <div class="flex justify-between text-[11px] text-gray-500 mt-2 font-mono">
+                                <span>هادئ</span>
+                                <span>كثيف جداً</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. Visual effects presets -->
+                        <div class="mb-8">
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-3 font-semibold">إضاءة الاستوديو</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="changeStudioLight('gold')" class="p-2.5 rounded-lg bg-neutral-900 text-xs font-semibold text-brand-gold hover:bg-neutral-800 transition">شعاع ذهبي دافئ</button>
+                                <button onclick="changeStudioLight('mystic')" class="p-2.5 rounded-lg bg-neutral-900 text-xs font-semibold text-brand-accentPink hover:bg-neutral-800 transition">توهج عرائسي أحمر</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick purchase button for selected item -->
+                    <div class="pt-6 border-t border-neutral-800">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <h4 id="panel-prod-title" class="font-bold text-sm">عطر روح (بمفرده)</h4>
+                                <p class="text-xs text-brand-gold mt-1 font-mono">10,000 ريال يمني</p>
+                            </div>
+                            <img id="panel-prod-img" src="IMG_0332.jpg" class="w-12 h-12 object-cover rounded-lg border border-neutral-800" onerror="this.src='https://placehold.co/100x100'">
+                        </div>
+                        <button id="panel-add-btn" onclick="addCurrent3DToCart()" class="w-full py-4 rounded-xl bg-brand-gold hover:bg-brand-goldDark text-neutral-950 font-black tracking-wider transition-all duration-300 shadow-lg shadow-brand-gold/15 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>إضافة المنتج المعروض للسلة</span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Scent & Gift Card Suite Section -->
+    <section id="ai-suite" class="py-24 bg-gradient-to-b from-brand-beige/30 to-white relative overflow-hidden">
+        <div class="absolute top-20 left-10 w-64 h-64 bg-brand-gold/10 rounded-full filter blur-3xl opacity-40 floating-element"></div>
+        <div class="absolute bottom-20 right-10 w-80 h-80 bg-brand-accentPink/10 rounded-full filter blur-3xl opacity-30 floating-element" style="animation-delay: 1.5s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-gold/10 text-brand-goldDark text-xs font-black tracking-wide mb-3">
+                    <i class="fas fa-sparkles"></i> مدعوم بالذكاء الاصطناعي والـ Gemini API
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-charcoal mb-4 font-serif">مستشار روح وجناح الإهداء الذكي</h2>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    اكتشف عبيرك المثالي الموصى به لروحك، أو دع الذكاء الاصطناعي يصيغ لك بطاقة إهداء تذكارية شاعريّة تليق بالهدايا الفاخرة التي ترسلها لمن تحب.
+                </p>
+            </div>
+
+            <!-- AI Interactive Tabs Container -->
+            <div class="max-w-4xl mx-auto bg-white rounded-[2rem] border border-brand-darkBeige/60 shadow-xl overflow-hidden">
+                <!-- Tabs header buttons -->
+                <div class="grid grid-cols-2 border-b border-brand-darkBeige/40 bg-brand-beige/20">
+                    <button onclick="switchAiTab('scent')" id="ai-tab-scent" class="py-5 text-center font-bold text-xs sm:text-sm text-brand-goldDark border-b-2 border-brand-gold flex items-center justify-center gap-2 transition duration-300">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                        <span>مستشار العطور الذكي</span>
+                    </button>
+                    <button onclick="switchAiTab('card')" id="ai-tab-card" class="py-5 text-center font-bold text-xs sm:text-sm text-gray-500 border-b-2 border-transparent hover:text-brand-charcoal flex items-center justify-center gap-2 transition duration-300">
+                        <i class="fas fa-feather-alt"></i>
+                        <span>صانع بطاقات الإهداءات</span>
+                    </button>
+                </div>
+
+                <!-- Tab 1 Contents: Scent Matcher -->
+                <div id="ai-content-scent" class="p-6 sm:p-10 block">
+                    <h3 class="text-lg font-bold text-brand-charcoal mb-3">ابحث عن توليفة أحلامك الفواحة</h3>
+                    <p class="text-xs text-gray-500 mb-6 leading-relaxed">
+                        صف لنا ذوقك الشخصي، نبرة حضورك، مناسبتك اليوم، أو طبيعة الأجواء التي تبحث عنها، وسنقوم بتحليل الكتالوج ليقترح لك الذكاء الاصطناعي ما يناسب روحك تماماً.
+                    </p>
+
+                    <!-- Suggestions Pill Tags -->
+                    <div class="mb-6">
+                        <span class="block text-[11px] font-bold text-gray-400 mb-2 uppercase">أفكار للبدء والكتابة:</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="applyAiSuggestion('أبحث عن هدية زواج فاخرة ومميزة لعروس مقربة 💍')" class="px-3.5 py-1.5 rounded-full bg-brand-beige/50 text-[11px] font-bold text-brand-charcoal hover:bg-brand-darkBeige/60 transition">💍 هدية زفاف فخمة</button>
+                            <button onclick="applyAiSuggestion('أريد بخور ذو رائحة دافئة ومهدئة لتبخير المنزل والضيوف يوم الجمعة 🏠')" class="px-3.5 py-1.5 rounded-full bg-brand-beige/50 text-[11px] font-bold text-brand-charcoal hover:bg-brand-darkBeige/60 transition">🏠 بخور للمنزل والضيوف</button>
+                            <button onclick="applyAiSuggestion('أريد عطر يومي ومنعش ذو ثبات طويل يناسب الدوام والعمل والجامعة 💼')" class="px-3.5 py-1.5 rounded-full bg-brand-beige/50 text-[11px] font-bold text-brand-charcoal hover:bg-brand-darkBeige/60 transition">💼 عطر يومي منعش</button>
+                            <button onclick="applyAiSuggestion('أريد بكج متكامل يجمع بين أرقى العطور وبخور العرائس في علبة تذكارية فاخرة جداً 🎁')" class="px-3.5 py-1.5 rounded-full bg-brand-beige/50 text-[11px] font-bold text-brand-charcoal hover:bg-brand-darkBeige/60 transition">🎁 بكج هدايا متكامل</button>
+                        </div>
+                    </div>
+
+                    <!-- Main Textarea Input -->
+                    <div class="mb-6 relative">
+                        <textarea id="ai-scent-input" rows="3" placeholder="مثال: أريد عطر شرقي يعبر عن الفخامة والوقار لرجل بمناسبة خاصة وثابت لعدة أيام بالملابس..." class="w-full text-xs sm:text-sm p-4 rounded-2xl border border-brand-darkBeige/70 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none resize-none leading-relaxed"></textarea>
+                    </div>
+
+                    <!-- Action Trigger -->
+                    <div class="flex justify-end">
+                        <button onclick="generateScentAdvice()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-charcoal hover:bg-brand-gold text-white font-bold text-xs tracking-wider transition-all duration-300 flex items-center justify-center gap-2 btn-shine shadow-lg">
+                            <i class="fas fa-brain"></i>
+                            <span>استخلاص عبير الأفكار</span>
+                        </button>
+                    </div>
+
+                    <!-- Loader & Result Areas -->
+                    <div id="ai-scent-loader" class="hidden mt-8 text-center p-6 bg-brand-beige/10 rounded-2xl border border-dashed border-brand-gold/30">
+                        <div class="inline-block w-8 h-8 border-4 border-brand-gold border-t-transparent rounded-full animate-spin mb-3"></div>
+                        <p class="text-xs font-bold text-brand-goldDark animate-pulse">جاري قياس عبق الأفكار وتنسيق ريح الجنان الموصى بها لروحك...</p>
+                    </div>
+
+                    <!-- Dynamic Result Panel -->
+                    <div id="ai-scent-result-box" class="hidden mt-8 p-6 rounded-2xl bg-brand-beige/30 border border-brand-darkBeige/40">
+                        <div class="flex items-center gap-2 mb-3 text-brand-gold">
+                            <i class="fas fa-quote-right text-lg"></i>
+                            <span class="text-xs font-black uppercase tracking-widest text-brand-charcoal">توصية مستشار روح الذكي:</span>
+                        </div>
+                        <div id="ai-scent-response-text" class="text-xs sm:text-sm text-gray-700 leading-relaxed font-sans mb-6"></div>
+                        
+                        <!-- Auto Matched Product Render for Shopping Cart -->
+                        <div id="ai-recommended-product-card" class="hidden bg-white rounded-2xl p-4 border border-brand-darkBeige flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm transition-all duration-300">
+                            <div class="flex items-center gap-3">
+                                <img id="ai-rec-img" src="IMG_0332.jpg" class="w-16 h-16 object-cover rounded-xl border border-brand-darkBeige/40" onerror="this.src='https://placehold.co/100x100'">
+                                <div>
+                                    <span class="text-[9px] bg-brand-gold/20 text-brand-goldDark font-black px-2 py-0.5 rounded-full block w-max mb-1">توصية حصرية</span>
+                                    <h4 id="ai-rec-name" class="font-extrabold text-xs sm:text-sm text-brand-charcoal">عطر روح</h4>
+                                    <p id="ai-rec-price" class="text-xs text-brand-goldDark font-bold mt-0.5 font-mono">10,000 ريال يمني</p>
+                                </div>
+                            </div>
+                            <button id="ai-rec-add-btn" onclick="addRecommendedToCartDirectly()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-brand-charcoal hover:bg-brand-gold text-white text-xs font-bold tracking-wider transition duration-300 flex items-center justify-center gap-2">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>إضافة التوصية للسلة فوراً</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2 Contents: Gift Card Writer -->
+                <div id="ai-content-card" class="p-6 sm:p-10 hidden">
+                    <h3 class="text-lg font-bold text-brand-charcoal mb-3">دون مشاعرك بنفحات شاعرية وبليغة</h3>
+                    <p class="text-xs text-gray-500 mb-6 leading-relaxed">
+                        اصنع لوحة شاعريّة فريدة من نوعها! فقط حدد اسم الشخص المناسبة ونبرة التعبير ليكتب لك الذكاء الاصطناعي أجمل الكلمات والقصائد لترفقها في الهدية.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label class="block text-[11px] font-black text-brand-charcoal uppercase mb-2">اسم المهدى إليه (المستلم):</label>
+                            <input id="ai-card-to" type="text" placeholder="مثال: أمي الغالية، زوجتي الحبيبة..." class="w-full text-xs p-3 rounded-xl border border-brand-darkBeige/70 focus:ring-1 focus:ring-brand-gold outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-black text-brand-charcoal uppercase mb-2">المناسبة الفريدة:</label>
+                            <select id="ai-card-occasion" class="w-full text-xs p-3 rounded-xl border border-brand-darkBeige/70 focus:ring-1 focus:ring-brand-gold outline-none bg-white">
+                                <option value="زواج مبارك وقران عروس">💍 قران وزفاف عروس</option>
+                                <option value="تقدير وامتنان ومحبة عامة">💖 شكر وتقدير ومحبة</option>
+                                <option value="عيد الفطر السعيد أو الأضحى">🌙 تهنئة العيد السعيد</option>
+                                <option value="بيت جديد وبركة منزل">🏠 مباركة منزل جديد</option>
+                                <option value="تخرج ونجاح وتفوق">🎓 تخرج وتفوق علمي</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-black text-brand-charcoal uppercase mb-2">نبرة وسحر الصياغة:</label>
+                            <select id="ai-card-tone" class="w-full text-xs p-3 rounded-xl border border-brand-darkBeige/70 focus:ring-1 focus:ring-brand-gold outline-none bg-white">
+                                <option value="أسلوب شعري بليغ يفيض بنسيم العود والبخور">🌸 شعري فصيح فخم</option>
+                                <option value="أسلوب وجداني دافئ ومؤثر وقريب جداً للقلب">❤️ دافئ ورومانسي</option>
+                                <option value="لهجة تراثية يمنية أصيلة تليق بأصالة وعراقة بخورنا">🇾🇪 تراثي يمني أصيل</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Optional Extra Info -->
+                    <div class="mb-6">
+                        <label class="block text-[11px] font-black text-brand-charcoal uppercase mb-2">تفاصيل إضافية (اختياري):</label>
+                        <input id="ai-card-extra" type="text" placeholder="مثال: تمنيات بالتوفيق في حياتها الزوجية الجديدة في المهجر..." class="w-full text-xs p-3 rounded-xl border border-brand-darkBeige/70 focus:ring-1 focus:ring-brand-gold outline-none">
+                    </div>
+
+                    <!-- Action Trigger -->
+                    <div class="flex justify-end">
+                        <button onclick="generateGiftNote()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-charcoal hover:bg-brand-gold text-white font-bold text-xs tracking-wider transition-all duration-300 flex items-center justify-center gap-2 btn-shine shadow-lg">
+                            <i class="fas fa-pen-nib"></i>
+                            <span>حياكة بطاقة الإهداء الراقية</span>
+                        </button>
+                    </div>
+
+                    <!-- Loader & Result Card Representation -->
+                    <div id="ai-card-loader" class="hidden mt-8 text-center p-6 bg-brand-beige/10 rounded-2xl border border-dashed border-brand-gold/30">
+                        <div class="inline-block w-8 h-8 border-4 border-brand-gold border-t-transparent rounded-full animate-spin mb-3"></div>
+                        <p class="text-xs font-bold text-brand-goldDark animate-pulse">جاري نسج أحرف المشاعر والمسك على بطاقة روح التذكارية...</p>
+                    </div>
+
+                    <!-- Dynamic Card Design View -->
+                    <div id="ai-card-result-box" class="hidden mt-8 relative max-w-md mx-auto p-8 rounded-[1.5rem] bg-amber-50/40 border-2 border-brand-gold/30 shadow-inner">
+                        <!-- Floral Corner SVG Design Assets -->
+                        <div class="absolute top-2 right-2 w-10 h-10 border-t-2 border-r-2 border-brand-gold/40 rounded-tr-md"></div>
+                        <div class="absolute bottom-2 left-2 w-10 h-10 border-b-2 border-l-2 border-brand-gold/40 rounded-bl-md"></div>
+                        
+                        <div class="text-center">
+                            <img src="IMG_0331.jpg" class="h-10 w-10 mx-auto rounded-full border border-brand-gold/30 object-cover opacity-80 mb-4" onerror="this.src='https://placehold.co/100x100'">
+                            <span class="text-[9px] text-brand-gold font-bold uppercase tracking-widest block mb-4">نفحات مخلصة من روح</span>
+                            
+                            <!-- Main written text -->
+                            <div id="ai-card-response-text" class="text-xs sm:text-sm text-brand-charcoal italic leading-loose font-serif whitespace-pre-line mb-6"></div>
+                            
+                            <!-- Copy Card Text Action -->
+                            <button onclick="copyGeneratedCardText()" class="inline-flex items-center gap-1.5 text-xs text-brand-goldDark hover:text-brand-gold font-bold transition">
+                                <i class="fas fa-copy"></i>
+                                <span>نسخ نص البطاقة للإرسال</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perfumes & Incense Singles Grid -->
+    <section id="products" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs text-brand-gold uppercase tracking-widest font-black block mb-3">تفرد بكل نفحة عطرية</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-charcoal mb-4 font-serif">المنتجات الفردية الفاخرة</h2>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    اختر ما يناسب شخصيتك من عطورنا وبخورنا المجهزة يدوياً بأرقى المكونات الطبيعية والزيوت العطرية النقية لضمان ثبات وفوحان لا يقاوم.
+                </p>
+            </div>
+
+            <!-- Custom Interactive Categories Tabs -->
+            <div class="flex justify-center gap-4 mb-12">
+                <button onclick="filterProducts('all')" id="tab-all" class="px-6 py-2.5 rounded-full text-xs font-bold border-2 border-brand-gold bg-brand-gold text-white transition-all duration-300 shadow-md">جميع المعروضات</button>
+                <button onclick="filterProducts('perfume')" id="tab-perfume" class="px-6 py-2.5 rounded-full text-xs font-bold border-2 border-transparent bg-brand-beige text-brand-charcoal hover:bg-brand-darkBeige transition-all duration-300">عطور مفردة</button>
+                <button onclick="filterProducts('incense')" id="tab-incense" class="px-6 py-2.5 rounded-full text-xs font-bold border-2 border-transparent bg-brand-beige text-brand-charcoal hover:bg-brand-darkBeige transition-all duration-300">بخور يمني فاخر</button>
+            </div>
+
+            <!-- Dynamic Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Product 1: عطر روح (IMG_0332.jpg) -->
+                <div class="product-card group bg-brand-beige/40 hover:bg-white rounded-3xl p-5 border border-brand-darkBeige/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between" data-category="perfume">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden aspect-square mb-5 bg-white shadow-inner">
+                            <span class="absolute top-3 right-3 bg-brand-gold text-neutral-900 text-[10px] font-black uppercase px-2.5 py-1 rounded-full z-15 tracking-wider">الأكثر شعبية</span>
+                            <img src="IMG_0332.jpg" alt="عطر روح وحده" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/300x300'">
+                        </div>
+                        <h3 class="font-extrabold text-lg text-brand-charcoal mb-2">عطر روح (مفرد)</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                            العطر الأيقوني المكون من توليفة شرقية شبابية تنبض بالحيوية والأصالة لتمنحك حضوراً ساحراً لا يُنسى.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-brand-charcoal font-black text-lg font-mono">10,000 <span class="text-xs text-gray-500">ريال يمني</span></span>
+                            <span class="text-[11px] bg-brand-gold/10 text-brand-goldDark px-2 py-1 rounded-md font-bold">متوفر حالياً</span>
+                        </div>
+                        <button onclick="addToCart(1)" class="w-full py-3.5 rounded-xl bg-brand-charcoal hover:bg-brand-gold text-white font-bold text-xs tracking-wider transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart text-[11px]"></i>
+                            <span>إضافة إلى السلة</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2: عطر عرائسي (IMG_0333.jpg) -->
+                <div class="product-card group bg-brand-beige/40 hover:bg-white rounded-3xl p-5 border border-brand-darkBeige/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between" data-category="perfume">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden aspect-square mb-5 bg-white shadow-inner">
+                            <span class="absolute top-3 right-3 bg-brand-crimson text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-full z-15 tracking-wider">عرائس فاخر</span>
+                            <img src="IMG_0333.jpg" alt="عطر عرائسي وحده" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/300x300'">
+                        </div>
+                        <h3 class="font-extrabold text-lg text-brand-charcoal mb-2">عطر عرائسي (مفرد)</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                            عطر فواح فخم يجمع بين روائح الورد والمسك الأبيض الأصيل مع لمسة دافئة تليق بالمناسبات الكبرى والأفراح والمناسبات الخاصة.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-brand-charcoal font-black text-lg font-mono">15,000 <span class="text-xs text-gray-500">ريال يمني</span></span>
+                            <span class="text-[11px] bg-emerald-100 text-emerald-800 px-2 py-1 rounded-md font-bold">طلب خاص</span>
+                        </div>
+                        <button onclick="addToCart(2)" class="w-full py-3.5 rounded-xl bg-brand-charcoal hover:bg-brand-gold text-white font-bold text-xs tracking-wider transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart text-[11px]"></i>
+                            <span>إضافة إلى السلة</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3: بخور روح (IMG_033333.jpg / wrapped incense) -->
+                <div class="product-card group bg-brand-beige/40 hover:bg-white rounded-3xl p-5 border border-brand-darkBeige/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between" data-category="incense">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden aspect-square mb-5 bg-white shadow-inner">
+                            <img src="IMG_033333.jpg" alt="بخور روح وحده" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/300x300'">
+                        </div>
+                        <h3 class="font-extrabold text-lg text-brand-charcoal mb-2">بخور روح (مفرد)</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                            قرص البخور المنقوش بشعار "روح" الفاخر. يتميز برائحة العود الفواحة التي تملأ أركان منزلك بالهدوء والسكينة والراحة.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-brand-charcoal font-black text-lg font-mono">10,000 <span class="text-xs text-gray-500">ريال يمني</span></span>
+                            <span class="text-[11px] bg-brand-gold/10 text-brand-goldDark px-2 py-1 rounded-md font-bold">الأكثر طلباً</span>
+                        </div>
+                        <button onclick="addToCart(3)" class="w-full py-3.5 rounded-xl bg-brand-charcoal hover:bg-brand-gold text-white font-bold text-xs tracking-wider transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart text-[11px]"></i>
+                            <span>إضافة إلى السلة</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4: بخور عرائسي -->
+                <div class="product-card group bg-brand-beige/40 hover:bg-white rounded-3xl p-5 border border-brand-darkBeige/40 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between" data-category="incense">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden aspect-square mb-5 bg-white shadow-inner">
+                            <span class="absolute top-3 right-3 bg-brand-crimson text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-full z-15 tracking-wider">خاص جداً</span>
+                            <!-- Placeholder representing bridal incense -->
+                            <img src="SaveClip.App_539144973_17856850308496834_7337369417561001227_n.jpg" alt="بخور عرائسي وحده" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://placehold.co/300x300'">
+                        </div>
+                        <h3 class="font-extrabold text-lg text-brand-charcoal mb-2">بخور عرائسي (مفرد)</h3>
+                        <p class="text-xs text-gray-500 leading-relaxed mb-4">
+                            بخور عرائسي مركز مطبوخ بعناية فائقة باستخدام أجود أنواع الظفر المعطر والعود السريلانكي الفاخر لإثراء عرسك ولياليك السعيدة.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-brand-charcoal font-black text-lg font-mono">25,000 <span class="text-xs text-gray-500">ريال يمني</span></span>
+                            <span class="text-[11px] bg-emerald-100 text-emerald-800 px-2 py-1 rounded-md font-bold">متاح للحجز</span>
+                        </div>
+                        <button onclick="addToCart(4)" class="w-full py-3.5 rounded-xl bg-brand-charcoal hover:bg-brand-gold text-white font-bold text-xs tracking-wider transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart text-[11px]"></i>
+                            <span>إضافة إلى السلة</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Beautiful Gift Packages / Box Bundles Showcase -->
+    <section id="packages" class="py-24 bg-brand-beige/50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-2xl mx-auto mb-20">
+                <span class="text-xs text-brand-gold uppercase tracking-widest font-black block mb-3">هدايا فاخرة وعلب تذكارية</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-charcoal mb-4 font-serif">بكجات روح الحصرية</h2>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    دلل أحبابك أو ابدأ رحلة عطرية متكاملة مع بكجاتنا المجهزة والمغلفة بقمة الفخامة في علب مبطنة بالستان الفاخر والذهبي البراق.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+                
+                <!-- Package 1: باكج روح (البيج) - IMG_0400.jpg & IMG_2642.jpg -->
+                <div class="bg-white rounded-[2.5rem] p-8 border border-brand-darkBeige flex flex-col justify-between shadow-xl relative overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
+                    <div class="absolute top-6 left-6 z-20">
+                        <span class="bg-brand-gold text-neutral-900 font-extrabold text-xs px-4 py-2 rounded-full shadow-md tracking-wider">
+                            الأكثر طلباً 💛
+                        </span>
+                    </div>
+
+                    <div>
+                        <!-- High quality image carousel for Rooh Package (Beige) -->
+                        <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-8 shadow-inner bg-brand-beige">
+                            <img id="pkg-beige-img" src="IMG_2644.jpg" alt="باكج روح بخور وعطر البيج" class="w-full h-full object-cover transition-all duration-500" onerror="this.src='https://placehold.co/600x450'">
+                            <!-- Image toggle buttons -->
+                            <div class="absolute bottom-4 right-4 flex gap-2">
+                                <button onclick="togglePkgImage('pkg-beige-img', 'IMG_2644.jpg')" class="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-brand-charcoal flex items-center justify-center text-xs shadow-md" title="داخل العلبة">
+                                    <i class="fas fa-box-open"></i>
+                                </button>
+                                <button onclick="togglePkgImage('pkg-beige-img', 'IMG_0400.jpg')" class="w-10 h-10 rounded-full bg-white/90 hover:bg-white text-brand-charcoal flex items-center justify-center text-xs shadow-md" title="خارج العلبة">
+                                    <i class="fas fa-gift"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <span class="text-xs font-black tracking-widest text-brand-goldDark uppercase block mb-2">بكج الهدايا اليومي الراقي</span>
+                        <h3 class="text-2xl font-black text-brand-charcoal mb-4">باكج رُوح بخور وعطر (البيج)</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            العلبة البيج الكلاسيكية الراقية المبطنة بالساتان الفاخر، تحتوي على عطر روح (مفرد) الفريد مع قرص بخور روح الفواح. مصممة لتكون الهدية الأنسب والأكثر تعبيراً عن المشاعر الصادقة والذوق الرفيع.
+                        </p>
+
+                        <!-- What's inside list -->
+                        <div class="bg-brand-beige/40 rounded-2xl p-4 mb-8">
+                            <h4 class="text-xs font-black text-brand-charcoal mb-3 uppercase tracking-wider">محتويات البكج:</h4>
+                            <ul class="grid grid-cols-2 gap-3 text-xs text-gray-600">
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-brand-gold text-sm"></i>
+                                    <span>عطر روح الفخم (75 مل)</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-brand-gold text-sm"></i>
+                                    <span>قرص بخور روح المعطر الفاخر</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-brand-gold text-sm"></i>
+                                    <span>علبة هدايا مبطنة بالساتان البيج</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-brand-gold text-sm"></i>
+                                    <span>كيس ورقي فاخر بشعار مذهب</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Add & Order Area -->
+                    <div class="flex items-center justify-between border-t border-brand-darkBeige/50 pt-6">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] text-gray-400 uppercase font-black">سعر العرض الحصري</span>
+                            <span class="text-2xl font-black text-brand-charcoal font-mono">20,000 <span class="text-xs text-gray-500 font-sans">ريال يمني</span></span>
+                        </div>
+                        <button onclick="addToCart(6)" class="px-8 py-4 rounded-xl bg-brand-charcoal hover:bg-brand-gold text-white font-bold text-sm tracking-wider transition-all duration-300 flex items-center gap-2 btn-shine">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>إضافة البكج للسلة</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Package 2: باكج العرائسي (الأحمر) - SaveClip.App_539144973... -->
+                <div class="bg-white rounded-[2.5rem] p-8 border border-brand-darkBeige flex flex-col justify-between shadow-xl relative overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
+                    <div class="absolute top-6 left-6 z-20">
+                        <span class="bg-brand-crimson text-white font-extrabold text-xs px-4 py-2 rounded-full shadow-md tracking-wider">
+                            الأفخم للأعراس 👑
+                        </span>
+                    </div>
+
+                    <div>
+                        <!-- High quality image carousel for Bridal Package (Red) -->
+                        <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-8 shadow-inner bg-brand-beige">
+                            <img id="pkg-red-img" src="SaveClip.App_539144973_17856850308496834_7337369417561001227_n.jpg" alt="باكج روح بخور وعطر الأحمر العرائسي" class="w-full h-full object-cover transition-all duration-500" onerror="this.src='https://placehold.co/600x450'">
+                        </div>
+
+                        <span class="text-xs font-black tracking-widest text-brand-crimson uppercase block mb-2">باكج الزفاف الفخم والمناسبات الخاصة</span>
+                        <h3 class="text-2xl font-black text-brand-charcoal mb-4">باكج العرائسي الفاخر (الأحمر)</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            علبة حمراء مخملية عميقة مبطنة بالساتان الأبيض النقي اللامع تحتوي على عطر عرائسي المركز الفاخر وبخور العرائس المطبوخ بأعلى مستويات التركيز والثبات. الاختيار الأول لكل عريس وعروس يبحثان عن الفخامة والتميز.
+                        </p>
+
+                        <!-- What's inside list -->
+                        <div class="bg-brand-crimson/5 rounded-2xl p-4 mb-8">
+                            <h4 class="text-xs font-black text-brand-crimson mb-3 uppercase tracking-wider">محتويات البكج:</h4>
+                            <ul class="grid grid-cols-2 gap-3 text-xs text-gray-600">
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-brand-crimson text-sm"></i>
+                                    <span>عطر عرائسي الساحر (100 مل)</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-brand-crimson text-sm"></i>
+                                    <span>بخور عرائسي ملكي فواح ومثبت</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-brand-crimson text-sm"></i>
+                                    <span>علبة مخملية حمراء مبطنة بالساتان الأبيض</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-brand-crimson text-sm"></i>
+                                    <span>كيس الهدايا الفاخر باللون الأحمر والذهبي</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Add & Order Area -->
+                    <div class="flex items-center justify-between border-t border-brand-darkBeige/50 pt-6">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] text-brand-crimson uppercase font-black">عرض خاص بالعروسين</span>
+                            <span class="text-2xl font-black text-brand-crimson font-mono">40,000 <span class="text-xs text-gray-500 font-sans">ريال يمني</span></span>
+                        </div>
+                        <button onclick="addToCart(5)" class="px-8 py-4 rounded-xl bg-brand-crimson hover:bg-red-800 text-white font-bold text-sm tracking-wider transition-all duration-300 flex items-center gap-2 btn-shine">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>إضافة البكج للسلة</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Details Text -->
+                <div class="lg:col-span-6">
+                    <span class="text-xs text-brand-gold uppercase tracking-widest font-black block mb-3">تفاصيل تصنع الفارق</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-charcoal mb-6 font-serif leading-tight">شغفنا هو الحفاظ على دفء تقاليدنا العريقة بنبض شبابي عصري</h2>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-6">
+                        تأسس برند "روح" للبخور والعطور بشغف يمني خالص يهدف إلى إحداث ثورة في عالم العطور والروائح الشرقية والبخور. لقد قمنا بالدمج بعناية بين عبق التقاليد اليمنية الأصيلة التي توارثناها جيلاً بعد جيل، والتصميم العصري والشبابي لتقديم منتج يفتخر به الجميع في كل المناسبات واليوميات.
+                    </p>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed mb-8">
+                        نحرص في كل منتج ننتجه على استخدام أجود أنواع المواد والزيوت العطرية العالية التركيز وتثبيتها بتقنيات خاصة تضمن فاعلية وثباتًا مستمرًا لأيام في منزلك وملابسك.
+                    </p>
+
+                    <!-- Core highlights list with icons -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-start gap-3">
+                            <span class="p-2 rounded-lg bg-brand-beige text-brand-gold mt-1">
+                                <i class="fas fa-award"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-extrabold text-sm text-brand-charcoal">جودة يمنية معتمدة</h4>
+                                <p class="text-xs text-gray-500 mt-1">منتجات طبيعية محضرة يدوياً بكل فخر واعتزاز.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="p-2 rounded-lg bg-brand-beige text-brand-gold mt-1">
+                                <i class="fas fa-shipping-fast"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-extrabold text-sm text-brand-charcoal">توصيل سريع وآمن</h4>
+                                <p class="text-xs text-gray-500 mt-1">نصلك أينما كنت في صنعاء ومختلف المحافظات والخليج.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Collage of Brand Images -->
+                <div class="lg:col-span-6 grid grid-cols-12 gap-4 items-center">
+                    <div class="col-span-7">
+                        <img src="IMG_2644.jpg" alt="تفاصيل علبة روح الفاخرة" class="rounded-3xl shadow-lg w-full object-cover aspect-[4/5]" onerror="this.src='https://placehold.co/400x500'">
+                    </div>
+                    <div class="col-span-5 flex flex-col gap-4">
+                        <img src="IMG_0332.jpg" alt="زجاجة عطر روح المميزة" class="rounded-2xl shadow-md w-full object-cover aspect-square" onerror="this.src='https://placehold.co/200x200'">
+                        <img src="IMG_0331.jpg" alt="شعار روح الفاخر الذهبي" class="rounded-2xl shadow-md w-full object-cover aspect-square" onerror="this.src='https://placehold.co/200x200'">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Trust and Customer reviews with dynamic statistics -->
+    <section id="reviews" class="py-24 bg-brand-beige/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs text-brand-gold uppercase tracking-widest font-black block mb-3">آراء وتجارب عائلتنا</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-charcoal mb-4 font-serif">ماذا يقولون عن منتجاتنا؟</h2>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    نحن فخورون بثقة آلاف العملاء الذين اختاروا روح لتعطير منازلهم ومناسباتهم السعيدة. إليكم بعض شهادات عملائنا الحقيقية.
+                </p>
+            </div>
+
+            <!-- Reviews Grid layout -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                
+                <!-- Review 1 -->
+                <div class="bg-white rounded-3xl p-8 border border-brand-darkBeige/50 shadow-md hover:shadow-lg transition">
+                    <div class="flex items-center gap-1.5 text-brand-gold text-sm mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-6">
+                        "عطر روح يجنن وثابت لأيام بالملابس والبيت! طلبت باكج روح البيج كهدية لزوجتي والعلبة فخمة جداً تبيض الوجه، أنصح فيه بشدة وتجربتي معهم رائعة."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-beige text-brand-charcoal font-black text-xs flex items-center justify-center">أ ح</div>
+                        <div>
+                            <h4 class="font-extrabold text-xs text-brand-charcoal">أحمد حسن</h4>
+                            <p class="text-[10px] text-gray-400">صنعاء - عميل مخلص</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white rounded-3xl p-8 border border-brand-darkBeige/50 shadow-md hover:shadow-lg transition">
+                    <div class="flex items-center gap-1.5 text-brand-gold text-sm mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-6">
+                        "بخور العرائس طباخة خرافية! ريحته تفتح النفس وثابتة بالمجلس ما راحت إلا بعد يومين من التبخير. التغليف والعلبة الحمراء شيء راقي جداً."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-beige text-brand-charcoal font-black text-xs flex items-center justify-center">ف ع</div>
+                        <div>
+                            <h4 class="font-extrabold text-xs text-brand-charcoal">فاطمة علي</h4>
+                            <p class="text-[10px] text-gray-400">عدن - عميلة متميزة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white rounded-3xl p-8 border border-brand-darkBeige/50 shadow-md hover:shadow-lg transition">
+                    <div class="flex items-center gap-1.5 text-brand-gold text-sm mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-6">
+                        "ما شاء الله تبارك الله، العبوة والتصميم راقي وعصري وشبابي. تواصلت معهم على الواتساب وكان التجاوب سريع جداً والتوصيل تم في نفس اليوم."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-beige text-brand-charcoal font-black text-xs flex items-center justify-center">م ص</div>
+                        <div>
+                            <h4 class="font-extrabold text-xs text-brand-charcoal">محمد صالح</h4>
+                            <p class="text-[10px] text-gray-400">تعز - عميل جديد</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sliding Elegant Shopping Cart drawer overlay -->
+    <div id="cart-sidebar" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <!-- Close overlay trigger -->
+        <div class="absolute inset-0 cursor-pointer" onclick="toggleCart()"></div>
+        
+        <!-- Cart panel -->
+        <div id="cart-panel" class="absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+            
+            <!-- Cart Header -->
+            <div class="p-6 border-b border-brand-darkBeige/50 flex items-center justify-between bg-brand-beige/50">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-shopping-bag text-brand-gold text-lg"></i>
+                    <h3 class="font-extrabold text-lg text-brand-charcoal">سلة المشتريات</h3>
+                    <span id="cart-count" class="bg-brand-gold text-neutral-900 text-xs font-black px-2.5 py-1 rounded-full">0</span>
+                </div>
+                <button onclick="toggleCart()" class="w-8 h-8 rounded-full bg-white hover:bg-brand-darkBeige flex items-center justify-center text-brand-charcoal transition-all">
+                    <i class="fas fa-times text-xs"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items list container -->
+            <div id="cart-items-container" class="flex-grow overflow-y-auto p-6 space-y-4">
+                <!-- Dynamic Items will be appended here -->
+                <div class="text-center py-20 text-gray-400">
+                    <i class="fas fa-shopping-basket text-4xl mb-4 text-brand-darkBeige"></i>
+                    <p class="text-sm font-semibold">سلة التسوق فارغة حالياً</p>
+                    <button onclick="toggleCart()" class="mt-4 px-6 py-2 rounded-xl bg-brand-charcoal text-white text-xs font-bold hover:bg-brand-gold transition">ابدأ التسوق</button>
+                </div>
+            </div>
+
+            <!-- Cart Footer Area -->
+            <div id="cart-footer" class="p-6 border-t border-brand-darkBeige/50 bg-brand-beige/30 hidden">
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>المجموع الفرعي</span>
+                        <span id="cart-subtotal" class="font-mono font-bold">0 ريال يمني</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>الشحن والتوصيل</span>
+                        <span class="text-emerald-600 font-bold">يحدد لاحقاً مع المندوب</span>
+                    </div>
+                    <div class="flex justify-between text-sm text-brand-charcoal font-black border-t border-brand-darkBeige/50 pt-3">
+                        <span>المجموع الكلي المبدئي</span>
+                        <span id="cart-total" class="font-mono text-base text-brand-goldDark">0 ريال يمني</span>
+                    </div>
+                </div>
+
+                <!-- Delivery Details Form -->
+                <div class="bg-white rounded-2xl p-4 border border-brand-darkBeige mb-4">
+                    <h4 class="text-xs font-black text-brand-charcoal mb-3 flex items-center gap-1.5">
+                        <i class="fas fa-map-marker-alt text-brand-gold"></i>
+                        <span>بيانات التوصيل السريع</span>
+                    </h4>
+                    <div class="space-y-2.5">
+                        <input type="text" id="order-name" placeholder="اسمك الكريم" class="w-full text-xs p-2.5 rounded-lg border border-brand-darkBeige focus:border-brand-gold focus:outline-none">
+                        <input type="tel" id="order-phone" placeholder="رقم الموبايل للاتصال (مثال: 77XXXXXXX)" class="w-full text-xs p-2.5 rounded-lg border border-brand-darkBeige focus:border-brand-gold focus:outline-none">
+                        <input type="text" id="order-address" placeholder="العنوان بالتفصيل (المحافظة / الشارع)" class="w-full text-xs p-2.5 rounded-lg border border-brand-darkBeige focus:border-brand-gold focus:outline-none">
+                    </div>
+                </div>
+
+                <!-- Send Order Button through WhatsApp -->
+                <button onclick="submitOrder()" class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black tracking-wider transition duration-300 flex items-center justify-center gap-2 shadow-lg btn-shine">
+                    <i class="fab fa-whatsapp text-sm"></i>
+                    <span>تأكيد الطلب وإرساله لواتساب المتجر</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Brand Footer -->
+    <footer class="bg-brand-charcoal text-white border-t border-neutral-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Footer Info Column -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <img src="IMG_0331.jpg" alt="شعار روح" class="h-12 w-12 object-cover rounded-full border border-brand-gold/30" onerror="this.src='https://placehold.co/100x100'">
+                        <span class="font-extrabold text-lg text-white font-serif">رُوح للبخور</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        مع كل نفحة، يلامس بخورنا روح المكان ويجعل اللحظات أكثر عمقاً وأصالة. إنه ليس مجرد اختيار، بل هو أسلوب حياة يعكس ذوقك الرفيع.
+                    </p>
+                    <!-- Unified social media handle display -->
+                    <div class="pt-2 flex items-center gap-3">
+                        <a href="https://instagram.com/roohalbakhour" target="_blank" class="w-8 h-8 rounded-full bg-neutral-800 hover:bg-brand-gold hover:text-neutral-900 flex items-center justify-center text-xs transition" title="انستغرام">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/roohalbakhour" target="_blank" class="w-8 h-8 rounded-full bg-neutral-800 hover:bg-brand-gold hover:text-neutral-900 flex items-center justify-center text-xs transition" title="فيسبوك">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/967783255542" target="_blank" class="w-8 h-8 rounded-full bg-neutral-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center text-xs transition" title="واتساب">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Footer Quick Links Column -->
+                <div>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-brand-gold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2.5 text-xs text-gray-400">
+                        <li><a href="#about" class="hover:text-white transition">قصتنا وقيمنا</a></li>
+                        <li><a href="#products" class="hover:text-white transition">المنتجات الفردية</a></li>
+                        <li><a href="#packages" class="hover:text-white transition">علب وبكجات الهدايا</a></li>
+                        <li><a href="#studio-3d" class="hover:text-white transition">الاستوديو الافتراضي 3D</a></li>
+                    </ul>
+                </div>
+
+                <!-- Product Links Column -->
+                <div>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-brand-gold mb-4">المنتجات الأكثر مبيعاً</h4>
+                    <ul class="space-y-2.5 text-xs text-gray-400">
+                        <li><a href="#products" class="hover:text-white transition">عطر روح الفخم - 10,000 ريال</a></li>
+                        <li><a href="#products" class="hover:text-white transition">عطر عرائسي الساحر - 15,000 ريال</a></li>
+                        <li><a href="#packages" class="hover:text-white transition">باكج روح البيج المتكامل - 20,000 ريال</a></li>
+                        <li><a href="#packages" class="hover:text-white transition">باكج العرائسي الأحمر الفاخر - 40,000 ريال</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacts info column -->
+                <div>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-brand-gold mb-4 font-serif">تواصل معنا مباشرة</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                        نحن سعداء بخدمتك والرد على استفساراتك وتجهيز طلبياتك الخاصة في أي وقت.
+                    </p>
+                    <div class="space-y-2.5 text-xs text-gray-400">
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-magic text-brand-gold"></i>
+                            <a href="#ai-suite" class="hover:text-white transition font-bold text-brand-gold">مستشار العطور الذكي (AI)</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-phone-alt text-brand-gold"></i>
+                            <a href="tel:+967783255542" class="hover:text-white transition tracking-wide font-mono">+967 783255542</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fab fa-whatsapp text-emerald-500"></i>
+                            <a href="https://wa.me/967783255542" target="_blank" class="hover:text-white transition font-mono">تواصل عبر الواتساب مباشرة</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt text-brand-gold"></i>
+                            <span>اليمن - صنعاء / خدمات شحن سريعة</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright bar -->
+            <div class="border-t border-neutral-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>© ٢٠٢٦ برند روح للبخور والعطور. جميع الحقوق محفوظة لعلامة روح التجارية.</p>
+                <div class="flex items-center gap-2">
+                    <span>اليوزر الموحد للتواصل الاجتماعي:</span>
+                    <span class="font-semibold text-brand-gold font-mono">@roohalbakhour</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Complete Product & Package database with exact user pricing and image associations
+        const productsDatabase = {
+            1: { id: 1, name: 'عطر روح (مفرد)', price: 10000, category: 'perfume', img: 'IMG_0332.jpg', desc: 'عطر روح بمفرده' },
+            2: { id: 2, name: 'عطر عرائسي (مفرد)', price: 15000, category: 'perfume', img: 'IMG_0333.jpg', desc: 'عطر عرائسي بمفرده' },
+            3: { id: 3, name: 'بخور روح (مفرد)', price: 10000, category: 'incense', img: 'IMG_0333.jpg', desc: 'بخور روح بمفرده' },
+            4: { id: 4, name: 'بخور عرائسي (مفرد)', price: 25000, category: 'incense', img: 'SaveClip.App_539144973_17856850308496834_7337369417561001227_n.jpg', desc: 'بخور عرائسي بمفرده' },
+            5: { id: 5, name: 'باكج العرائسي (بخور وعطر) - الأحمر', price: 40000, category: 'package', img: 'SaveClip.App_539144973_17856850308496834_7337369417561001227_n.jpg', desc: 'باكج العرائسي بخور وعطر' },
+            6: { id: 6, name: 'باكج روح (بخور وعطر) - البيج', price: 20000, category: 'package', img: 'IMG_2644.jpg', desc: 'باكج روح بخور وعطر' }
+        };
+
+        // Shopping Cart state
+        let cart = {};
+
+        // Three.js Global variables
+        let scene, camera, renderer, perfumeBottle, smokeParticles = [];
+        let ambientLight, directionalLight, customStudioLight;
+        let smokeDensity = 80;
+        let currentSelectedBottle = 'rooh'; // 'rooh' (amber/gold) or 'arais' (red)
+
+        // AI State Variables
+        let currentAiRecommendedId = null;
+
+        // Custom animated feedback messages to keep user experience premium
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            // Tailor the color based on message type
+            let bgClass = 'bg-brand-charcoal text-white';
+            let iconClass = 'fa-check-circle text-brand-gold';
+            
+            if (type === 'error') {
+                bgClass = 'bg-red-900 text-white';
+                iconClass = 'fa-exclamation-circle text-red-300';
+            } else if (type === 'info') {
+                bgClass = 'bg-brand-beige text-brand-charcoal border border-brand-darkBeige';
+                iconClass = 'fa-info-circle text-brand-goldDark';
+            }
+
+            toast.className = `p-4 rounded-xl shadow-xl flex items-center gap-3 transform translate-y-2 opacity-0 transition-all duration-300 ${bgClass}`;
+            toast.innerHTML = `
+                <i class="fas ${iconClass} text-lg"></i>
+                <span class="text-xs font-bold leading-relaxed">${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 50);
+
+            // Remove toast
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3500);
+        }
+
+        // Add to shopping cart logic
+        function addToCart(productId) {
+            const product = productsDatabase[productId];
+            if (!product) return;
+
+            if (cart[productId]) {
+                cart[productId].qty += 1;
+            } else {
+                cart[productId] = {
+                    ...product,
+                    qty: 1
+                };
+            }
+
+            updateCartUI();
+            showToast(`تمت إضافة ${product.name} إلى السلة بنجاح! 🛍️`);
+        }
+
+        // Toggle Cart Drawer
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const panel = document.getElementById('cart-panel');
+            
+            const isOpen = !sidebar.classList.contains('pointer-events-none');
+
+            if (isOpen) {
+                // Close
+                panel.classList.add('translate-x-full');
+                sidebar.classList.add('opacity-0', 'pointer-events-none');
+            } else {
+                // Open
+                sidebar.classList.remove('pointer-events-none', 'opacity-0');
+                panel.classList.remove('translate-x-full');
+            }
+        }
+
+        // Remove item from cart
+        function removeCartItem(productId) {
+            if (cart[productId]) {
+                delete cart[productId];
+                updateCartUI();
+                showToast('تم إزالة المنتج من السلة', 'info');
+            }
+        }
+
+        // Update item quantity
+        function updateQty(productId, delta) {
+            if (cart[productId]) {
+                cart[productId].qty += delta;
+                if (cart[productId].qty <= 0) {
+                    delete cart[productId];
+                    showToast('تم إزالة المنتج من السلة', 'info');
+                }
+                updateCartUI();
+            }
+        }
+
+        // Refresh Cart UI elements dynamically
+        function updateCartUI() {
+            const itemsContainer = document.getElementById('cart-items-container');
+            const cartBadge = document.getElementById('cart-badge');
+            const cartCount = document.getElementById('cart-count');
+            const cartFooter = document.getElementById('cart-footer');
+            const subtotalText = document.getElementById('cart-subtotal');
+            const totalText = document.getElementById('cart-total');
+
+            const itemIds = Object.keys(cart);
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            if (itemIds.length === 0) {
+                // Empty view
+                itemsContainer.innerHTML = `
+                    <div class="text-center py-24 text-gray-400">
+                        <i class="fas fa-shopping-basket text-4xl mb-4 text-brand-darkBeige"></i>
+                        <p class="text-sm font-semibold">سلة التسوق فارغة حالياً</p>
+                        <button onclick="toggleCart()" class="mt-4 px-6 py-2 rounded-xl bg-brand-charcoal text-white text-xs font-bold hover:bg-brand-gold transition">ابدأ التسوق</button>
+                    </div>
+                `;
+                cartFooter.classList.add('hidden');
+                cartBadge.classList.add('hidden');
+                cartCount.innerText = '0';
+                return;
+            }
+
+            // Populate cart items
+            itemsContainer.innerHTML = '';
+            itemIds.forEach(id => {
+                const item = cart[id];
+                totalItems += item.qty;
+                const itemCost = item.price * item.qty;
+                totalPrice += itemCost;
+
+                const itemRow = document.createElement('div');
+                itemRow.className = 'flex items-center justify-between gap-4 p-4 rounded-2xl bg-brand-beige/30 border border-brand-darkBeige/20 transition hover:bg-white hover:shadow-sm';
+                itemRow.innerHTML = `
+                    <div class="flex items-center gap-3 flex-grow">
+                        <img src="${item.img}" class="w-14 h-14 object-cover rounded-xl border border-brand-darkBeige" onerror="this.src='https://placehold.co/100x100'">
+                        <div class="min-w-0">
+                            <h4 class="font-extrabold text-xs text-brand-charcoal truncate mb-1">${item.name}</h4>
+                            <span class="text-[11px] font-mono font-bold text-brand-goldDark">${item.price.toLocaleString()} ريال</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-end gap-2 shrink-0">
+                        <!-- Action quantity counter -->
+                        <div class="flex items-center bg-white border border-brand-darkBeige rounded-lg">
+                            <button onclick="updateQty(${item.id}, 1)" class="w-6 h-6 flex items-center justify-center text-xs text-brand-charcoal hover:bg-brand-beige rounded-r-lg">+</button>
+                            <span class="w-8 text-center text-[11px] font-bold">${item.qty}</span>
+                            <button onclick="updateQty(${item.id}, -1)" class="w-6 h-6 flex items-center justify-center text-xs text-brand-charcoal hover:bg-brand-beige rounded-l-lg">-</button>
+                        </div>
+                        <button onclick="removeCartItem(${item.id})" class="text-[10px] text-red-500 hover:text-red-700 font-bold flex items-center gap-1">
+                            <i class="fas fa-trash text-[8px]"></i>
+                            <span>إزالة</span>
+                        </button>
+                    </div>
+                `;
+                itemsContainer.appendChild(itemRow);
+            });
+
+            // Update footer metrics
+            cartFooter.classList.remove('hidden');
+            cartBadge.classList.remove('hidden');
+            cartBadge.innerText = totalItems;
+            cartCount.innerText = totalItems;
+            subtotalText.innerText = `${totalPrice.toLocaleString()} ريال يمني`;
+            totalText.innerText = `${totalPrice.toLocaleString()} ريال يمني`;
+        }
+
+        function togglePkgImage(imgId, src) {
+            const imgElement = document.getElementById(imgId);
+            if (imgElement) {
+                imgElement.style.opacity = '0';
+                setTimeout(() => {
+                    imgElement.src = src;
+                    imgElement.style.opacity = '1';
+                }, 200);
+            }
+        }
+
+        function filterProducts(category) {
+            // Update UI tabs state
+            const tabs = ['all', 'perfume', 'incense'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById(`tab-${tab}`);
+                if (tab === category) {
+                    btn.className = "px-6 py-2.5 rounded-full text-xs font-bold border-2 border-brand-gold bg-brand-gold text-white transition-all duration-300 shadow-md";
+                } else {
+                    btn.className = "px-6 py-2.5 rounded-full text-xs font-bold border-2 border-transparent bg-brand-beige text-brand-charcoal hover:bg-brand-darkBeige transition-all duration-300";
+                }
+            });
+
+            // Show/Hide product cards
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Assemble final order and open WhatsApp with beautiful formatted Arabic text
+        function submitOrder() {
+            const name = document.getElementById('order-name').value.trim();
+            const phone = document.getElementById('order-phone').value.trim();
+            const address = document.getElementById('order-address').value.trim();
+
+            if (!name || !phone || !address) {
+                showToast('فضلاً، أكمل تعبئة كافة بيانات التوصيل لخدمتك بشكل صحيح.', 'error');
+                return;
+            }
+
+            const itemIds = Object.keys(cart);
+            if (itemIds.length === 0) {
+                showToast('سلتك فارغة حالياً. أضف منتجات قبل إرسال الطلب.', 'error');
+                return;
+            }
+
+            // Construct Whatsapp formatted message
+            let msg = `✨ *طلب جديد من متجر روح للبخور والعطور* ✨\n\n`;
+            msg += `👤 *بيانات العميل للطلب والتوصيل:*\n`;
+            msg += `• *الاسم الكريـم:* ${name}\n`;
+            msg += `• *رقم الموبايل:* ${phone}\n`;
+            msg += `• *عنوان الشحن:* ${address}\n\n`;
+            
+            msg += `🛍️ *قائمة المشتريات والطلبات:*\n`;
+            
+            let total = 0;
+            itemIds.forEach((id, index) => {
+                const item = cart[id];
+                const cost = item.price * item.qty;
+                total += cost;
+                msg += `${index + 1}) *${item.name}* (الكمية: ${item.qty}) ← ${cost.toLocaleString()} ريال\n`;
+            });
+
+            msg += `\n💵 *المجموع الكلي للمشتريات:* ${total.toLocaleString()} ريال يمني\n\n`;
+            msg += `💨 _ملاحظة: تواصلوا معي لتأكيد موعد التوصيل الفعلي للشحنة. شكراً لكم!_`;
+
+            // WhatsApp link encoding
+            const whatsappNumber = "967783255542";
+            const encodedText = encodeURIComponent(msg);
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedText}`;
+
+            // Redirect client to WhatsApp
+            showToast('جاري توجيهك الآن إلى واتساب المتجر لمتابعة وتأكيد طلبك... 🟢');
+            setTimeout(() => {
+                window.open(whatsappURL, '_blank');
+            }, 1000);
+        }
+
+        // Generate stunning 3D procedural bottle render on load
+        function init3DStudio() {
+            const container = document.getElementById('threejs-container');
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            // Scene setup
+            scene = new THREE.Scene();
+            // Matching luxurious charcoal backdrop with subtle ambient fog
+            scene.background = new THREE.Color(0x11100F);
+            scene.fog = new THREE.FogExp2(0x11100F, 0.15);
+
+            // Camera setup
+            camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+            camera.position.set(0, 1, 5);
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+            renderer.setSize(width, height);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.shadowMap.enabled = true;
+            container.appendChild(renderer.domElement);
+
+            // 1. Lighting Setup (Luxury Studio Setup)
+            ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+            scene.add(ambientLight);
+
+            directionalLight = new THREE.DirectionalLight(0xfff5e6, 1.2);
+            directionalLight.position.set(5, 8, 5);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+
+            // Subtle gold back lighting
+            customStudioLight = new THREE.PointLight(0xd4af37, 2, 8);
+            customStudioLight.position.set(-3, 2, -3);
+            scene.add(customStudioLight);
+
+            // 2. Build 3D Perfume Bottle model procedurally
+            perfumeBottle = new THREE.Group();
+
+            // Glass Material (frosted premium style)
+            const glassMaterial = new THREE.MeshPhysicalMaterial({
+                color: 0xFAF8F5,
+                metalness: 0.1,
+                roughness: 0.2,
+                transparent: true,
+                opacity: 0.65,
+                transmission: 0.6,
+                ior: 1.5,
+                side: THREE.DoubleSide
+            });
+
+            // Perfume liquid color representing Amber/Gold or Red (Bridal)
+            const liquidColor = (currentSelectedBottle === 'rooh') ? 0xD4AF37 : 0x9D1C4C;
+            const liquidMaterial = new THREE.MeshStandardMaterial({
+                color: liquidColor,
+                metalness: 0.1,
+                roughness: 0.1,
+                transparent: true,
+                opacity: 0.85
+            });
+
+            // Golden Cap Material
+            const goldMetalMaterial = new THREE.MeshStandardMaterial({
+                color: 0xD4AF37,
+                metalness: 0.9,
+                roughness: 0.15
+            });
+
+            // Rounded premium wood sphere cap (matches actual wooden orb caps)
+            const woodCapMaterial = new THREE.MeshStandardMaterial({
+                color: 0xC5A880,
+                roughness: 0.7,
+                metalness: 0.0
+            });
+
+            // Main bottle outer glass geometry (sleek rectangular with round edges)
+            const bodyGlassGeo = new THREE.CylinderGeometry(0.8, 0.8, 1.8, 32);
+            const bodyGlass = new THREE.Mesh(bodyGlassGeo, glassMaterial);
+            bodyGlass.castShadow = true;
+            perfumeBottle.add(bodyGlass);
+
+            // Liquid inside (slightly smaller cylinder)
+            const liquidGeo = new THREE.CylinderGeometry(0.74, 0.74, 1.5, 32);
+            const liquid = new THREE.Mesh(liquidGeo, liquidMaterial);
+            liquid.position.y = -0.1;
+            perfumeBottle.add(liquid);
+
+            // Bottle neck (brass gold finish)
+            const neckGeo = new THREE.CylinderGeometry(0.3, 0.3, 0.3, 32);
+            const neck = new THREE.Mesh(neckGeo, goldMetalMaterial);
+            neck.position.y = 1.0;
+            perfumeBottle.add(neck);
+
+            // Premium wood sphere cap
+            const capGeo = new THREE.SphereGeometry(0.5, 32, 32);
+            const cap = new THREE.Mesh(capGeo, woodCapMaterial);
+            cap.position.y = 1.5;
+            perfumeBottle.add(cap);
+
+            // Brand central gold badge on the front glass face
+            const badgeGeo = new THREE.CylinderGeometry(0.3, 0.3, 0.05, 32);
+            const badge = new THREE.Mesh(badgeGeo, goldMetalMaterial);
+            badge.rotation.x = Math.PI / 2;
+            badge.position.set(0, 0, 0.8);
+            perfumeBottle.add(badge);
+
+            // Add overall bottle object to the interactive group
+            perfumeBottle.position.y = 0.2;
+            scene.add(perfumeBottle);
+
+            // 3. Realistic Incense Smoke Particles System
+            createSmokeEmitter();
+
+            // 4. Studio Floor/Incense Stand Platform
+            const platformGeo = new THREE.CylinderGeometry(1.5, 1.6, 0.15, 64);
+            const platformMaterial = new THREE.MeshStandardMaterial({ color: 0x1f1f1e, roughness: 0.5 });
+            const platform = new THREE.Mesh(platformGeo, platformMaterial);
+            platform.position.y = -0.8;
+            platform.receiveShadow = true;
+            scene.add(platform);
+
+            // Interaction mouse/touch dragging handlers
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+
+            const onMouseDown = (e) => {
+                isDragging = true;
+                previousMousePosition = {
+                    x: e.clientX || e.touches[0].clientX,
+                    y: e.clientY || e.touches[0].clientY
+                };
+            };
+
+            const onMouseMove = (e) => {
+                if (!isDragging) return;
+                const clientX = e.clientX || (e.touches ? e.touches[0].clientX : 0);
+                const clientY = e.clientY || (e.touches ? e.touches[0].clientY : 0);
+
+                const deltaMove = {
+                    x: clientX - previousMousePosition.x,
+                    y: clientY - previousMousePosition.y
+                };
+
+                // Rotate bottle based on drags
+                perfumeBottle.rotation.y += deltaMove.x * 0.01;
+                perfumeBottle.rotation.x += deltaMove.y * 0.01;
+
+                previousMousePosition = {
+                    x: clientX,
+                    y: clientY
+                };
+            };
+
+            const onMouseUp = () => {
+                isDragging = false;
+            };
+
+            // Setup listeners inside container
+            container.addEventListener('mousedown', onMouseDown);
+            container.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+
+            container.addEventListener('touchstart', onMouseDown, { passive: true });
+            container.addEventListener('touchmove', onMouseMove, { passive: true });
+            container.addEventListener('touchend', onMouseUp, { passive: true });
+
+            // Handle responsive resize of canvas
+            window.addEventListener('resize', onWindowResize);
+
+            // Kick off animation loop
+            animateLoop();
+        }
+
+        function createSmokeEmitter() {
+            // Remove old smoke if any
+            smokeParticles.forEach(p => scene.remove(p));
+            smokeParticles = [];
+
+            // Simple soft smoke texture made programmatically using canvas
+            const smokeCanvas = document.createElement('canvas');
+            smokeCanvas.width = 64;
+            smokeCanvas.height = 64;
+            const ctx = smokeCanvas.getContext('2d');
+            const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+            gradient.addColorStop(0, 'rgba(200, 200, 200, 0.15)');
+            gradient.addColorStop(0.5, 'rgba(150, 150, 150, 0.08)');
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 64, 64);
+
+            const smokeTexture = new THREE.CanvasTexture(smokeCanvas);
+
+            const smokeGeo = new THREE.PlaneGeometry(1, 1);
+            const smokeMat = new THREE.MeshBasicMaterial({
+                map: smokeTexture,
+                transparent: true,
+                depthWrite: false,
+                blending: THREE.NormalBlending
+            });
+
+            // Generate smoke instances
+            for (let i = 0; i < smokeDensity; i++) {
+                const particle = new THREE.Mesh(smokeGeo, smokeMat);
+                resetSmokeParticle(particle);
+                // Spread start positions
+                particle.position.y = -0.8 + (Math.random() * 2.5);
+                scene.add(particle);
+                smokeParticles.push(particle);
+            }
+        }
+
+        function resetSmokeParticle(particle) {
+            // Smoke originates from the platform next to the bottle
+            particle.position.x = -1.0 + (Math.random() * 0.3); // incense burner side
+            particle.position.y = -0.8;
+            particle.position.z = -0.5 + (Math.random() * 1.0);
+            
+            // Random scaling for smoke puffs
+            const size = 0.3 + Math.random() * 0.5;
+            particle.scale.set(size, size, 1);
+            
+            // Speed settings
+            particle.userData = {
+                speedY: 0.01 + Math.random() * 0.015,
+                speedX: -0.004 + Math.random() * 0.008,
+                rotationSpeed: -0.01 + Math.random() * 0.02,
+                opacity: 0.1 + Math.random() * 0.35
+            };
+            particle.material.opacity = particle.userData.opacity;
+        }
+
+        function animateLoop() {
+            requestAnimationFrame(animateLoop);
+
+            // Auto rotate perfume bottle when not being dragged
+            perfumeBottle.rotation.y += 0.003;
+
+            // Animate each smoke particle moving up & drifting elegantly
+            smokeParticles.forEach(p => {
+                p.position.y += p.userData.speedY;
+                p.position.x += p.userData.speedX;
+                p.rotation.z += p.userData.rotationSpeed;
+
+                // Create a swaying motion (waving smoke look)
+                p.position.x += Math.sin(p.position.y * 3) * 0.003;
+
+                // Fade out smoke as it rises
+                const heightLimit = 2.0;
+                if (p.position.y > heightLimit) {
+                    resetSmokeParticle(p);
+                } else {
+                    // Gradual fade based on height
+                    const lifeRatio = 1 - ((p.position.y - (-0.8)) / (heightLimit - (-0.8)));
+                    p.material.opacity = p.userData.opacity * lifeRatio;
+                    // Grow larger as it rises
+                    const sizeGrowth = 1.0 + (1 - lifeRatio) * 1.5;
+                    p.scale.set(sizeGrowth * 0.4, sizeGrowth * 0.4, 1);
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        // Adjust renderer on window resize
+        function onWindowResize() {
+            const container = document.getElementById('threejs-container');
+            if (!container) return;
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        }
+
+        // Camera Reset view helper
+        function reset3DCamera() {
+            camera.position.set(0, 1, 5);
+            perfumeBottle.rotation.set(0, 0, 0);
+            showToast('تمت إعادة ضبط زاوية الكاميرا بنجاح.', 'info');
+        }
+
+        function select3DPerfume(type) {
+            currentSelectedBottle = type;
+
+            const btnRooh = document.getElementById('btn-opt-rooh');
+            const btnArais = document.getElementById('btn-opt-arais');
+            
+            const prodTitle = document.getElementById('panel-prod-title');
+            const prodImg = document.getElementById('panel-prod-img');
+            const activeBadge = document.getElementById('active-3d-name');
+
+            // Find liquid mesh inside group and change color
+            perfumeBottle.traverse(child => {
+                if (child.isMesh && child.geometry.type === "CylinderGeometry" && child.position.y === -0.1) {
+                    // This is the liquid mesh inside
+                    child.material.color.setHex(type === 'rooh' ? 0xD4AF37 : 0x9D1C4C);
+                }
+            });
+
+            if (type === 'rooh') {
+                btnRooh.className = "p-4 rounded-xl border-2 border-brand-gold bg-brand-gold/10 text-white flex flex-col items-center gap-2 transition-all duration-300";
+                btnArais.className = "p-4 rounded-xl border-2 border-transparent bg-neutral-900 hover:bg-neutral-800 text-gray-400 flex flex-col items-center gap-2 transition-all duration-300";
+                
+                prodTitle.innerText = "عطر روح (مفرد)";
+                prodImg.src = "IMG_0332.jpg";
+                activeBadge.innerText = "عطر روح الفاخر";
+                showToast('تم تبديل العرض إلى عطر رُوح الذهبي المميّز ✨');
+            } else {
+                btnArais.className = "p-4 rounded-xl border-2 border-brand-crimson bg-brand-crimson/10 text-white flex flex-col items-center gap-2 transition-all duration-300";
+                btnRooh.className = "p-4 rounded-xl border-2 border-transparent bg-neutral-900 hover:bg-neutral-800 text-gray-400 flex flex-col items-center gap-2 transition-all duration-300";
+                
+                prodTitle.innerText = "عطر عرائسي (مفرد)";
+                prodImg.src = "IMG_0333.jpg";
+                activeBadge.innerText = "عطر عرائسي الفخم";
+                showToast('تم تبديل العرض إلى عطر عرائسي الوردي الملكي 💖');
+            }
+        }
+
+        // Add currently selected customized 3D perfume to cart directly
+        function addCurrent3DToCart() {
+            if (currentSelectedBottle === 'rooh') {
+                addToCart(1); // عطر روح
+            } else {
+                addToCart(2); // عطر عرائسي
+            }
+        }
+
+        // Modify smoke density dynamically via slider
+        function updateSmokeDensity(val) {
+            smokeDensity = parseInt(val);
+            createSmokeEmitter();
+        }
+
+        // Adjust studio lighting live
+        function changeStudioLight(theme) {
+            if (theme === 'gold') {
+                customStudioLight.color.setHex(0xd4af37);
+                customStudioLight.intensity = 2;
+                directionalLight.color.setHex(0xfff5e6);
+                showToast('تم تفعيل إضاءة الشعاع الذهبي الدافئ 💛');
+            } else {
+                customStudioLight.color.setHex(0x9d1c4c);
+                customStudioLight.intensity = 3;
+                directionalLight.color.setHex(0xffe6f0);
+                showToast('تم تفعيل إضاءة التوهج العرائسي الوردي 💖');
+            }
+        }
+
+        // ==========================================
+        //         GEMINI LLM API UTILITIES
+        // ==========================================
+
+        // Switching between AI tabs smoothly
+        function switchAiTab(tabName) {
+            const tabScent = document.getElementById('ai-tab-scent');
+            const tabCard = document.getElementById('ai-tab-card');
+            const contentScent = document.getElementById('ai-content-scent');
+            const contentCard = document.getElementById('ai-content-card');
+
+            if (tabName === 'scent') {
+                tabScent.className = "py-5 text-center font-bold text-xs sm:text-sm text-brand-goldDark border-b-2 border-brand-gold flex items-center justify-center gap-2 transition duration-300";
+                tabCard.className = "py-5 text-center font-bold text-xs sm:text-sm text-gray-500 border-b-2 border-transparent hover:text-brand-charcoal flex items-center justify-center gap-2 transition duration-300";
+                contentScent.classList.replace('hidden', 'block');
+                contentCard.classList.replace('block', 'hidden');
+            } else {
+                tabCard.className = "py-5 text-center font-bold text-xs sm:text-sm text-brand-goldDark border-b-2 border-brand-gold flex items-center justify-center gap-2 transition duration-300";
+                tabScent.className = "py-5 text-center font-bold text-xs sm:text-sm text-gray-500 border-b-2 border-transparent hover:text-brand-charcoal flex items-center justify-center gap-2 transition duration-300";
+                contentCard.classList.replace('hidden', 'block');
+                contentScent.classList.replace('block', 'hidden');
+            }
+        }
+
+        // Auto fills predefined template suggestions to make input effortless
+        function applyAiSuggestion(suggestionText) {
+            const inputField = document.getElementById('ai-scent-input');
+            inputField.value = suggestionText;
+            inputField.classList.add('border-brand-gold');
+            setTimeout(() => inputField.classList.remove('border-brand-gold'), 1000);
+            showToast('تم ملء التوصية المحددة تلقائياً! اضغط الآن على زر الاستخلاص. ✍️', 'info');
+        }
+
+        // Wrapper call to request Gemini LLM
+        async function fetchGeminiLlm(promptInput, systemInstructionText) {
+            const apiKey = ""; // Canvas Injector handles API Keys
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: promptInput }] }],
+                systemInstruction: {
+                    parts: [{ text: systemInstructionText }]
+                }
+            };
+
+            // Implementation of standard Exponential backoff to avoid limits
+            let retries = 3;
+            let delay = 1000;
+            while (retries > 0) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error("API call error status code: " + response.status);
+                    const result = await response.json();
+                    return result.candidates?.[0]?.content?.parts?.[0]?.text || "نأسف، تعذر استخراج النص.";
+                } catch (err) {
+                    retries--;
+                    if (retries === 0) {
+                        throw err;
+                    }
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2; // exponential backoff step
+                }
+            }
+        }
+
+        // Scent matchmaking logic with parsing tags
+        async function generateScentAdvice() {
+            const inputVal = document.getElementById('ai-scent-input').value.trim();
+            const loader = document.getElementById('ai-scent-loader');
+            const resultBox = document.getElementById('ai-scent-result-box');
+            const responseText = document.getElementById('ai-scent-response-text');
+            const recommendedProductCard = document.getElementById('ai-recommended-product-card');
+
+            if (!inputVal) {
+                showToast('فضلاً، اكتب بضعة أحرف تصف فيها مزاجك أو مناسبتك لنتمكن من توجيهك 🌸', 'error');
+                return;
+            }
+
+            // Clean previous states
+            loader.classList.remove('hidden');
+            resultBox.classList.add('hidden');
+            recommendedProductCard.classList.add('hidden');
+            currentAiRecommendedId = null;
+
+            const systemPrompt = `أنت مستشار العطور والبخور الروحي الموثوق لبرند "روح للبخور والعطور" الفاخر في اليمن.
+            مهمتك هي قراءة تفضيلات أو مناسبة العميل، ومن ثم اقتراح المنتج أو البكج الأنسب من كتالوج المنتجات أدناه بأسلوب شاعري يثير الحواس ويبين فخامة الروائح.
+            
+            كتالوج المنتجات الرسمي الخاص بنا هو:
+            - عطر روح (مفرد) [ID: 1] - السعر: 10,000 ريال يمني. (عطر أيقوني شرقي شبابي منعش)
+            - عطر عرائسي (مفرد) [ID: 2] - السعر: 15,000 ريال يمني. (عطر فواح فخم بالورد والمسك الأبيض للأفراح)
+            - بخور روح (مفرد) [ID: 3] - السعر: 10,000 ريال يمني. (بخور عود فواح يجلب الراحة والهدوء للمنزل)
+            - بخور عرائسي (مفرد) [ID: 4] - السعر: 25,000 ريال يمني. (بخور عرائسي مركز مطبوخ بالظفر المعطر والعود السريلانكي)
+            - باكج العرائسي الفاخر (الأحمر) [ID: 5] - السعر: 40,000 ريال يمني. (يحتوي عطر عرائسي وبخور عرائسي في علبة مخملية حمراء مبطنة بالساتان الأبيض)
+            - باكج روح الفاخر (البيج) [ID: 6] - السعر: 20,000 ريال يمني. (يحتوي عطر روح وبخور روح في علبة بيج كلاسيكية راقية مبطنة بالساتان)
+
+            تعليمات هامة جداً للاستجابة:
+            1. صغ كلامك بلغة عربية بليغة مفعمة بأوصاف العطور، وعزز ثقة العميل ببرند "روح".
+            2. يجب وحتماً أن تنهي إجابتك برمز المنتج الأنسب مسبوقاً بـ [ID: X] حيث X هو رقم المعرف للمنتج من 1 إلى 6. مثال: [ID: 5].
+            3. لا تذكر أو تظهر رمز [ID: X] داخل السطور بشكل غير منسق، بل اكتبه فقط في السطر الأخير تماماً لكي يستطيع النظام تحليله برمجياً.`;
+
+            try {
+                const response = await fetchGeminiLlm(inputVal, systemPrompt);
+                
+                // Hide loader
+                loader.classList.add('hidden');
+                
+                // Parse for ID tag to enable quick-buy cart feature
+                const match = response.match(/\[ID:\s*([1-6])\]/);
+                let cleanText = response.replace(/\[ID:\s*[1-6]\]/g, '').trim();
+
+                responseText.innerText = cleanText;
+                resultBox.classList.remove('hidden');
+
+                if (match && match[1]) {
+                    const matchedId = parseInt(match[1]);
+                    currentAiRecommendedId = matchedId;
+                    const prod = productsDatabase[matchedId];
+                    if (prod) {
+                        // Render recommending product card inside results
+                        document.getElementById('ai-rec-name').innerText = prod.name;
+                        document.getElementById('ai-rec-price').innerText = `${prod.price.toLocaleString()} ريال يمني`;
+                        document.getElementById('ai-rec-img').src = prod.img;
+                        recommendedProductCard.classList.remove('hidden');
+                    }
+                }
+                showToast('تم فك رموز عبق الأفكار! نأمل أن تعجبك التوصية 🌸');
+            } catch (err) {
+                console.error(err);
+                loader.classList.add('hidden');
+                showToast('عذراً، حدث عطل مؤقت في الاتصال بالسيرفر. يرجى تكرار المحاولة في بضع ثوانٍ.', 'error');
+            }
+        }
+
+        // Direct Add Recommended product to Cart
+        function addRecommendedToCartDirectly() {
+            if (currentAiRecommendedId) {
+                addToCart(currentAiRecommendedId);
+                showToast('تم إضافة المنتج الموصى به من مستشار الذكاء الاصطناعي بنجاح! 🛍️');
+            }
+        }
+
+        // Gift note writing logic
+        async function generateGiftNote() {
+            const recipient = document.getElementById('ai-card-to').value.trim();
+            const occasion = document.getElementById('ai-card-occasion').value;
+            const tone = document.getElementById('ai-card-tone').value;
+            const extra = document.getElementById('ai-card-extra').value.trim();
+
+            const loader = document.getElementById('ai-card-loader');
+            const resultBox = document.getElementById('ai-card-result-box');
+            const responseText = document.getElementById('ai-card-response-text');
+
+            if (!recipient) {
+                showToast('فضلاً، اكتب اسم المهدى إليه أولاً لنقوم ببدء حياكة البطاقة ✍️', 'error');
+                return;
+            }
+
+            loader.classList.remove('hidden');
+            resultBox.classList.add('hidden');
+
+            const queryInput = `اسم المستلم: ${recipient}
+            المناسبة: ${occasion}
+            الأسلوب والمزاج المطلوب: ${tone}
+            تفاصيل وتوجيهات أخرى: ${extra || "لا توجد تفاصيل إضافية"}`;
+
+            const systemPrompt = `أنت مصمم وكاتب بطاقات إهداء الهدايا الفاخرة لبرند "روح للبخور والعطور" في اليمن.
+            مهمتك هي كتابة إهداء تذكاري مؤثّر وشاعري تليق بمستوى عطور روح وبخورها الفاخرة التي توضع كهدية للأحباب والأصدقاء المقربين.
+            التزم بالآتي:
+            1. ابدأ بصيغة راقية لاسم المستلم (المستلم هو: ${recipient}).
+            2. استخدم مفرادات غنية من وحي العود، البخور، الورد، والوجدان.
+            3. اجعل الإهداء قصيراً، مناسباً للطباعة والكتابة على كرت (من 3 إلى 6 أسطر بليغة).
+            4. لا تضع أي ردود جانبية أو برمجية في المخرج، فقط اكتب الكلمات التي سيتم طباعتها وتداولها مباشرة.`;
+
+            try {
+                const response = await fetchGeminiLlm(queryInput, systemPrompt);
+                loader.classList.add('hidden');
+                
+                responseText.innerText = response.trim();
+                resultBox.classList.remove('hidden');
+                showToast('تم نسج بطاقتك الشاعرية بعبير الإحساس وبخور روح! 🎨✨');
+            } catch (err) {
+                console.error(err);
+                loader.classList.add('hidden');
+                showToast('عذراً، لم نتمكن من الاتصال بـ Gemini API حالياً، كرر المحاولة قريباً.', 'error');
+            }
+        }
+
+        // Copy generated card text to clipboard securely
+        function copyGeneratedCardText() {
+            const responseText = document.getElementById('ai-card-response-text').innerText;
+            if (responseText) {
+                // Clipboard fallback support for IFrames
+                const el = document.createElement('textarea');
+                el.value = responseText;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                
+                showToast('تم نسخ كلمات الإهداء إلى الحافظة بنجاح! 📋');
+            }
+        }
+
+        window.onload = function () {
+            // Initiate ThreeJS scene immediately
+            init3DStudio();
+            // Start default filtered list to showcase all products
+            filterProducts('all');
+        }
+    </script>
+</body>
+</html>
